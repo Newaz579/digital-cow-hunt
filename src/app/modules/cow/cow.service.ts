@@ -3,6 +3,7 @@ import { Cow } from './cow.model';
 
 const createCow = async (payload: ICow): Promise<ICow | null> => {
   const result = (await Cow.create(payload)).populate('seller');
+
   return result;
 };
 
