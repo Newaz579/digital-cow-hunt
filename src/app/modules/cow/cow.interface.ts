@@ -15,6 +15,24 @@ export type ICow = {
 
 export type CowModel = Model<ICow, Record<string, unknown>>;
 
+export type ICowFilters = {
+  searchTerm?: string;
+  price?: string;
+  location?: string;
+  breed?: string;
+  category?: string;
+};
+
+export const cowFilterableFields = [
+  'searchTerm',
+  'price',
+  'location',
+  'breed',
+  'category',
+];
+
+export const cowSearchableFields = ['price', 'location', 'breed', 'category'];
+
 /*
 {
   "name": "Bella",

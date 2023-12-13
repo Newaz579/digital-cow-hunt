@@ -16,3 +16,19 @@ export type IUser = {
 };
 
 export type UserModel = Model<IUser, Record<string, unknown>>;
+
+export type IUserFilterableFilters = {
+  searchTerm?: string;
+  role?: string;
+  phoneNumber?: string;
+  budget?: string;
+};
+
+export const userFilterableFields = [
+  'searchTerm',
+  'role',
+  'phoneNumber',
+  'budget',
+];
+
+export const userSearchableFields = ['role', 'phoneNumber', 'budget'];

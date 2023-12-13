@@ -11,6 +11,10 @@ export type IGenericResponse<T> = {
     page: number;
     limit: number;
     total: number;
+    budget?: number;
+    minPrice?: number;
+    maxPrice?: number;
+    location?: string;
   };
   data: T;
 };
