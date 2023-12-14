@@ -1,4 +1,5 @@
 # digital-cow-hunt
+vercel url: https://digital-cow-hunt-5fejugk5d-newaz579.vercel.app/
 Application Routes:
 User
 api/v1/users/create-user (POST)
