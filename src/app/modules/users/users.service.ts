@@ -9,9 +9,19 @@ import {
   userSearchableFields,
 } from './users.interface';
 import { User } from './users.model';
+import bcrypt from 'bcrypt';
+import config from '../../../config';
 
 const createUser = async (payload: IUser): Promise<IUser | null> => {
+  //hash password
+  payload.password = await bcrypt.hash(
+    payload.password,
+    Number(config.bcrypt_salt_rounds),
+  );
+  //create user
   const result = await User.create(payload);
+
+  //check create user
   if (!result) {
     throw new ApiError(400, 'Failed to create user');
   }
