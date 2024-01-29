@@ -16,8 +16,8 @@ const createOrder = async (cow: ICow, buyer: IUser): Promise<IOrder | null> => {
     const existingCow = await Cow.findById(cow);
     const existingBuyer = await User.findById(buyer);
     const cowSellerUser = await User.findById(existingCow?.seller);
-    const buyerBudget = Number(existingBuyer!.budget);
-    const cowPrice = Number(existingCow!.price);
+    const buyerBudget = Number(existingBuyer?.budget);
+    const cowPrice = Number(existingCow?.price);
     const cowSellerIncome = Number(cowSellerUser?.income);
 
     if (!existingBuyer || !existingCow) {

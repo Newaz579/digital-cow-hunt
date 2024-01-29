@@ -6,9 +6,11 @@ import globalErrorHandler from './app/middlewares/globalErrorHandler';
 // import ApiError from './errors/ApiError';
 import router from './app/routes';
 import httpStatus from 'http-status';
+import cookieParser from 'cookie-parser';
 const app: Application = express();
 
 app.use(cors());
+app.use(cookieParser());
 
 //parser
 app.use(express.json());

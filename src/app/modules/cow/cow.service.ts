@@ -1,7 +1,7 @@
 import { SortOrder } from 'mongoose';
 import { IGenericResponse } from '../../../interfaces/common';
 import { IPaginationOptions } from '../../../interfaces/pagination';
-import { paginationHelpers } from '../paginationHelpers/paginationHelpers';
+import { paginationHelpers } from '../Helpers/paginationHelpers';
 import { ICow, ICowFilters, cowSearchableFields } from './cow.interface';
 import { Cow } from './cow.model';
 
@@ -67,7 +67,7 @@ const getAllCow = async (
 };
 
 const getSingleCow = async (id: string): Promise<ICow | null> => {
-  const result = await Cow.findById(id).populate('seller');
+  const result = await Cow.findOne({ id }).populate('seller');
   return result;
 };
 
@@ -75,7 +75,7 @@ const updateCow = async (
   id: string,
   payload: Partial<ICow>,
 ): Promise<ICow | null> => {
-  const result = await Cow.findOneAndUpdate({ _id: id }, payload, {
+  const result = await Cow.findOneAndUpdate({ id: id }, payload, {
     new: true,
   }).populate('seller');
   return result;

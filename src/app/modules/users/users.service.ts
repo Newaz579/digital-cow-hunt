@@ -2,22 +2,15 @@ import { SortOrder } from 'mongoose';
 import ApiError from '../../../errors/ApiError';
 import { IGenericResponse } from '../../../interfaces/common';
 import { IPaginationOptions } from '../../../interfaces/pagination';
-import { paginationHelpers } from '../paginationHelpers/paginationHelpers';
+import { paginationHelpers } from '../Helpers/paginationHelpers';
 import {
   IUser,
   IUserFilterableFilters,
   userSearchableFields,
 } from './users.interface';
 import { User } from './users.model';
-import bcrypt from 'bcrypt';
-import config from '../../../config';
 
 const createUser = async (payload: IUser): Promise<IUser | null> => {
-  //hash password
-  payload.password = await bcrypt.hash(
-    payload.password,
-    Number(config.bcrypt_salt_rounds),
-  );
   //create user
   const result = await User.create(payload);
 
@@ -81,7 +74,7 @@ const getAllUsers = async (
 };
 
 const getSingleUser = async (id: string): Promise<IUser | null> => {
-  const result = await User.findById(id);
+  const result = await User.findOne({ id });
   return result;
 };
 
@@ -89,7 +82,7 @@ const updateUser = async (
   id: string,
   payload: Partial<IUser>,
 ): Promise<IUser | null> => {
-  const result = await User.findOneAndUpdate({ _id: id }, payload, {
+  const result = await User.findOneAndUpdate({ id: id }, payload, {
     new: true,
   });
   return result;
